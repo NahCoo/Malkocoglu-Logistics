@@ -30,6 +30,15 @@
       color: var(--main-white);
       padding: 30px 20px;
       text-align: center;
+      position: relative;
+    }
+
+    header img.logo {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
     }
 
     header h1 {
@@ -61,17 +70,25 @@
     }
 
     .slider {
-      overflow: hidden;
+      position: relative;
       max-height: 350px;
+      overflow: hidden;
     }
 
     .slider img {
       width: 100%;
-      display: none;
+      height: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
     .slider img.active {
-      display: block;
+      opacity: 1;
+      position: relative;
+      z-index: 1;
     }
 
     section {
@@ -86,11 +103,6 @@
       border-bottom: 3px solid var(--main-blue);
       display: inline-block;
       padding-bottom: 5px;
-    }
-
-    ul {
-      list-style-type: square;
-      margin-left: 20px;
     }
 
     .team-grid {
@@ -125,7 +137,7 @@
       font-size: 0.9em;
     }
 
-    form {
+       form {
       max-width: 500px;
       margin: auto;
       background: #f9f9f9;
@@ -176,13 +188,6 @@
       background: #071337;
     }
 
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-      margin-top: 15px;
-    }
-
     footer {
       background: var(--main-blue);
       color: var(--main-white);
@@ -206,28 +211,30 @@
 <body>
 
 <header>
+  <img src="img/malkocoglulogo.jpg" alt="Logo" class="logo" />
   <h1>Malkoçoğlu Logistics</h1>
   <p>Farkı hissedin.</p>
 </header>
 
 <nav>
   <a href="#about">Hakkımızda</a>
-  <a href="#services">Hizmetler</a>
   <a href="#team">Yönetim</a>
   <a href="#contact">İletişim</a>
 </nav>
 
-<div class="slider">
-  <img src="https://via.placeholder.com/1200x350/0a1d4c/ffffff?text=Malkoçoğlu+Taşımacılık" class="active" />
-  <img src="https://via.placeholder.com/1200x350/c8102e/ffffff?text=Güvenli+ve+Hızlı+Teslimat" />
-  <img src="https://via.placeholder.com/1200x350/ffffff/0a1d4c?text=Oyun+İçi+Nakliyat+Çözümünüz" />
+<div class="slider" id="slider">
+  <img src="img/slider1.jpg" class="active" />
+  <img src="img/slider2.jpg" />
+  <img src="img/slider3.jpg" />
 </div>
 
 <section id="about">
   <h2>Hakkımızda</h2>
   <p>
-    Malkoçoğlu Logistics Kimdir*
+ Malkoçoğlu Logistics Kimdir*
+    Malkoçoğlu Logistics, Hakan Turan tarafından 06.06.2021 tarihinde kurulmuş, 05.06.2024'te Batu liderliğinde VTC olarak faaliyet göstermeye başlamıştır.
 
+    Amacımız TruckersMP ve ETS2'de kaliteli bir şirket kurarak tüm üyelerimizin keyifli bir ortamda bulunmasını sağlamaktır.
     Malkoçoğlu Logistics Hakan Turan tarafından 06.06.2021 tarihinde kurulmuş olup 05.06.2024 tarihinde Batu'nun önderliğinde VTC olarak aranıza katılmış bulunmaktayız.
 
     Amacımız başta TruckersMP ve Euro Truck Sımulator 2 de Kaliteli bir şirket haline gelip daha kaliteli hizmet sunmayı hedefliyoruz.
@@ -244,7 +251,7 @@
 
     Our goal is to progress by having fun in the style that all our members want.
 
-    For more information, you can join our discord address and follow us on our other links.
+    For more information, you can join our discord address and follow us on our other links..
   </p>
 </section>
 
@@ -264,18 +271,17 @@
 
 <script>
   const teamData = [
-    { name: "Batuhan Ezber", role: "Owner", img: "batuhan.jpg" },
-    { name: "Hakan Turan", role: "Owner", img: "hakan.jpg" },
-    { name: "Duran Seviç", role: "Founder", img: "duran.jpg" },
-    { name: "İsmail Uçar", role: "Founder", img: "ismail.jpg" },
-    { name: "Utku Özdemir", role: "CEO", img: "utku.jpg" },
-    { name: "Berk Bülbül", role: "Event Manager", img: "berk.jpg" },
-    { name: "Çağan Çalışkam", role: "Event Manager", img: "cagan.jpg" },
-    { name: "Enes Bakıray", role: "Media Team", img: "enes.jpg" }
+    { name: "Batuhan Ezber", role: "Owner", img: "MalkocogluLogistics/batuhan.jpg" },
+    { name: "Hakan Turan", role: "Owner", img: "MalkocogluLogistics/hakan.jpg" },
+    { name: "Duran Seviç", role: "Founder", img: "MalkocogluLogistics/duran.jpg" },
+    { name: "İsmail Uçar", role: "Founder", img: "MalkocogluLogistics/ismail.jpg" },
+    { name: "Utku Özdemir", role: "CEO", img: "MalkocogluLogistics/utku.jpg" },
+    { name: "Berk Bülbül", role: "Event Manager", img: "MalkocogluLogistics/berk.jpg" },
+    { name: "Çağan Çalışkan", role: "Event Manager", img: "MalkocogluLogistics/cagan.jpg" },
+    { name: "Enes Bakiray", role: "Media Team", img: "MalkocogluLogistics/enes.jpg" }
   ];
 
   const teamContainer = document.getElementById("teamCards");
-
   teamData.forEach(member => {
     const card = document.createElement("div");
     card.className = "team-card";
@@ -286,7 +292,33 @@
     `;
     teamContainer.appendChild(card);
   });
+
+  const images = document.querySelectorAll(".slider img");
+  let current = 0;
+  let started = false;
+
+  function showNextImage() {
+    images[current].classList.remove("active");
+    current = (current + 1) % images.length;
+    images[current].classList.add("active");
+  }
+
+  function startAutoSlide() {
+    if (!started) {
+      setInterval(showNextImage, 5000);
+      started = true;
+    }
+  }
+
+  window.addEventListener("scroll", function () {
+    const sliderTop = document.getElementById("slider").offsetTop;
+    const scrollTop = window.scrollY + window.innerHeight;
+    if (scrollTop > sliderTop + 100) {
+      startAutoSlide();
+    }
+  });
 </script>
 
 </body>
 </html>
+
